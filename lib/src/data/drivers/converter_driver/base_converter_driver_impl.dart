@@ -11,7 +11,7 @@ abstract class BaseConverterDriverImpl extends ConverterDriver {
   Future<File> convertImage(File file, Parameters parameters) async {
     try {
       final arguments = <String>[
-        file.path.replaceFirst('1.png', '10.png').replaceFirst('2.png', '20.png'),
+        file.path,
         '-m',
         parameters.compressionMethod.toString(),
         '-q',
