@@ -9,7 +9,7 @@ extension ConvertByteToReadableFormat on int {
       return _formatSize(this, gigaByte, 'GB');
     }
     if (this > megaByte) {
-      return _formatSize(this, megaByte, 'KB');
+      return _formatSize(this, megaByte, 'MB');
     }
     if (this > kiloByte) {
       return _formatSize(this, kiloByte, 'KB');
