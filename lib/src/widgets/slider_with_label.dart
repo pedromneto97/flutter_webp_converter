@@ -31,7 +31,7 @@ class SliderWithLabel extends StatelessWidget {
           subtitle: Text(subtitle),
           dense: true,
         ),
-        Slider.adaptive(
+        Slider(
           min: min,
           max: max,
           divisions: divisions,
