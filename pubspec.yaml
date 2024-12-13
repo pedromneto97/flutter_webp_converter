@@ -2,40 +2,28 @@ name: webp_converter
 description: Application to convert images to WebP images
 publish_to: 'none'
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-# In Windows, build-name is used as the major, minor, and patch parts
-# of the product and file versions while build-number is used as the build suffix.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.1 <3.0.0'
+  sdk: ^3.6.0
 
 dependencies:
   flutter:
     sdk: flutter
-  get_it: ^7.2.0
-  path_provider: ^2.0.11
-  flutter_bloc: ^8.1.1
-  equatable: ^2.0.5
-  injectable: ^1.5.3
-  url_launcher: ^6.1.6
-  file_picker: ^5.2.0+1
+  get_it: ^8.0.3
+  path_provider: ^2.1.5
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.7
+  injectable: ^2.5.0
+  url_launcher: ^6.3.1
+  file_picker: ^8.1.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
-  build_runner: ^2.2.1
-  injectable_generator: ^1.5.4
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.13
+  injectable_generator: ^2.6.2
 
 flutter:
   uses-material-design: true
