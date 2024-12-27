@@ -1,0 +1,102 @@
+{
+  "title": "Conversor de Imagens para WebP",
+  "@title": {
+    "description": "Title of the application"
+  },
+  "selectedImages": "Imagens Selecionadas",
+  "@selectedImages": {
+    "description": "Label for the selected images list"
+  },
+  "pickImages": "Escolher Imagens",
+  "@pickImages": {
+    "description": "Button to pick images"
+  },
+  "removeImage": "Remover Imagem",
+  "@removeImage": {
+    "description": "Button to remove an image"
+  },
+  "waiting": "Aguardando",
+  "@waiting": {
+    "description": "Label for the waiting state"
+  },
+  "converting": "Convertendo",
+  "@converting": {
+    "description": "Label for the converting state"
+  },
+  "success": "Sucesso",
+  "@success": {
+    "description": "Label for the success state"
+  },
+  "error": "Erro",
+  "@error": {
+    "description": "Label for the error state"
+  },
+  "newSize": "Novo Tamanho: {size}",
+  "@newSize": {
+    "description": "Label for the new size of the image",
+    "placeholders": {
+      "size": {
+        "type": "String",
+        "example": "10 KB"
+      }
+    }
+  },
+  "sizeReduction": "Redução de Tamanho: {percentage}%",
+  "@sizeReduction": {
+    "description": "Label for the size reduction of the image",
+    "placeholders": {
+      "percentage": {
+        "type": "String",
+        "example": "50.00"
+      }
+    }
+  },
+  "convert": "Converter para WebP",
+  "@convert": {
+    "description": "Button to convert the images to WebP"
+  },
+  "clear": "Limpar imagens",
+  "@clear": {
+    "description": "Button to clear the selected images"
+  },
+  "conversionParameters": "Parâmetros de Conversão",
+  "@conversionParameters": {
+    "description": "Title for the conversion parameters"
+  },
+  "quality": "Qualidade",
+  "@quality": {
+    "description": "Label for the quality of the image"
+  },
+  "qualityDescription": "Ajuste a qualidade da imagem de 0 a 100. Quanto maior a qualidade, maior o tamanho do arquivo.",
+  "@qualityDescription": {
+    "description": "Description for the quality of the image"
+  },
+  "compressionMethod": "Método de Compressão",
+  "@compressionMethod": {
+    "description": "Label for the compression method of the image"
+  },
+  "compressionMethodDescription": "Selecione o método de compressão a ser utilizado. Quanto maior o valor, menor o arquivo gerado, porém, maior o tempo de conversão.",
+  "@compressionMethodDescription": {
+    "description": "Description for the compression method of the image"
+  },
+  "lossless": "Sem Perdas",
+  "@lossless": {
+    "description": "Label for the lossless compression method"
+  },
+  "losslessDescription": "Método de compressão sem perdas. Gera arquivos maiores, porém, com a mesma qualidade da imagem original.",
+  "@losslessDescription": {
+    "description": "Description for the lossless compression method"
+  },
+  "multiThreading": "Multi-Threading",
+  "@multiThreading": {
+    "description": "Label for the multi-threading option"
+  },
+  "multiThreadingDescription": "Habilita o uso de múltiplos núcleos do processador para acelerar a conversão.",
+  "@multiThreadingDescription": {
+    "description": "Description for the multi-threading option"
+  },
+  "outputFolder": "Diretório de saída",
+  "@outputFolder": {
+    "description": "Label for the output folder"
+  }
+}

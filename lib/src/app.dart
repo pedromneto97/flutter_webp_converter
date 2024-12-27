@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'core/utils/localizations.dart';
 import 'presentation/home/home_page.dart';
 
 class App extends StatelessWidget {
@@ -7,11 +9,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'WebP Converter',
+        onGenerateTitle: (context) => context.strings.title,
         theme: ThemeData.from(
           colorScheme: const ColorScheme.dark(),
           useMaterial3: true,
         ),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         home: const HomePage(),
       );
 }
