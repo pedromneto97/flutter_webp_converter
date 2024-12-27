@@ -2,14 +2,24 @@ import 'dart:io';
 
 import 'package:injectable/injectable.dart';
 
-import '../drivers/converter_driver.dart';
+import '../../rust/api/converter.dart';
 import '../entities/entities.dart';
 
 @LazySingleton()
 class ConvertFileUseCase {
-  final ConverterDriver _converterDriver;
+  const ConvertFileUseCase();
 
-  const ConvertFileUseCase(this._converterDriver);
+  Future<File> call(File file, Parameters parameters) async {
+    final outputPath = await convertImage(
+      imagePath: file.path,
+      convertParameters: ConvertParameters(
+        quality: parameters.quality.toDouble(),
+        outputDirectory: parameters.outputFolder,
+        lossless: parameters.lossless,
+        method: parameters.compressionMethod,
+      ),
+    );
 
-  Future<File> call(File file, Parameters parameters) => _converterDriver.convertImage(file, parameters);
+    return File(outputPath);
+  }
 }
