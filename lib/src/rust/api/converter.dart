@@ -7,6 +7,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 import '../frb_generated.dart';
 
+// These functions are ignored because they are not marked as `pub`: `generate_output_path`, `generate_webp_config_from_convert_parameters`, `get_image_name_from_path`
 // These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `fmt`
 
 Future<String> convertImage(
@@ -31,6 +32,7 @@ class ConvertParameters {
     required this.lossless,
     required this.method,
   });
+
   final double quality;
   final String outputDirectory;
   final bool lossless;
