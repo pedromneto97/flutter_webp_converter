@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../../core/utils/file.dart';
 import '../../../../core/utils/localizations.dart';
 import '../../../../widgets/file_size_display.dart';
 import '../../cubit/convert_file/convert_file_cubit.dart';
@@ -48,7 +49,7 @@ class _SelectedImageState extends State<SelectedImage> {
 
   @override
   Widget build(BuildContext context) {
-    const size = 160.0;
+    const size = 100.0;
 
     return BlocProvider<ConvertFileCubit>.value(
       value: _cubit,
@@ -58,6 +59,7 @@ class _SelectedImageState extends State<SelectedImage> {
           horizontal: 16,
         ),
         child: Row(
+          spacing: 12,
           children: [
             Image.file(
               widget.file,
@@ -69,16 +71,16 @@ class _SelectedImageState extends State<SelectedImage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.file.path),
+                  Text(
+                    _file.name,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                   FileSizeDisplay(file: _file),
                 ],
               ),
             ),
             NewFileSize(originalFile: _file),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: ConvertImageStatus(),
-            ),
+            const ConvertImageStatus(),
             BlocSelector<ConvertFileCubit, ConvertFileState, bool>(
               selector: (state) => state is ConvertingFile,
               builder: (context, isConvertingFile) => IconButton(

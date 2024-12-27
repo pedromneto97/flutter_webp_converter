@@ -23,8 +23,8 @@ class FileSizeDisplay extends StatelessWidget {
 
           return Text(
             snapshot.data!.byteToString,
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Theme.of(context).colorScheme.secondary,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,
                 ),
             textAlign: TextAlign.center,
