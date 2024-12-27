@@ -72,11 +72,11 @@ fn wire__crate__api__converter__convert_image_impl(
                 <crate::api::converter::ConvertParameters>::sse_decode(&mut deserializer);
             deserializer.end();
             move |context| {
-                transform_result_sse::<_, ()>((move || {
-                    let output_ok = Result::<_, ()>::Ok(crate::api::converter::convert_image(
+                transform_result_sse::<_, crate::api::converter::ConvertError>((move || {
+                    let output_ok = crate::api::converter::convert_image(
                         api_image_path,
                         api_convert_parameters,
-                    ))?;
+                    )?;
                     Ok(output_ok)
                 })())
             }
@@ -135,6 +135,21 @@ impl SseDecode for bool {
     }
 }
 
+impl SseDecode for crate::api::converter::ConvertError {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::converter::ConvertError::IoError,
+            1 => crate::api::converter::ConvertError::ImageError,
+            2 => crate::api::converter::ConvertError::EncoderError,
+            3 => crate::api::converter::ConvertError::WebPConfigError,
+            4 => crate::api::converter::ConvertError::WebPEncodingError,
+            _ => unreachable!("Invalid variant for ConvertError: {}", inner),
+        };
+    }
+}
+
 impl SseDecode for crate::api::converter::ConvertParameters {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -155,6 +170,13 @@ impl SseDecode for f32 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         deserializer.cursor.read_f32::<NativeEndian>().unwrap()
+    }
+}
+
+impl SseDecode for i32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_i32::<NativeEndian>().unwrap()
     }
 }
 
@@ -189,13 +211,6 @@ impl SseDecode for () {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {}
 }
 
-impl SseDecode for i32 {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        deserializer.cursor.read_i32::<NativeEndian>().unwrap()
-    }
-}
-
 fn pde_ffi_dispatcher_primary_impl(
     func_id: i32,
     port: flutter_rust_bridge::for_generated::MessagePort,
@@ -225,6 +240,30 @@ fn pde_ffi_dispatcher_sync_impl(
 
 // Section: rust2dart
 
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::converter::ConvertError {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::IoError => 0.into_dart(),
+            Self::ImageError => 1.into_dart(),
+            Self::EncoderError => 2.into_dart(),
+            Self::WebPConfigError => 3.into_dart(),
+            Self::WebPEncodingError => 4.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::converter::ConvertError
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::converter::ConvertError>
+    for crate::api::converter::ConvertError
+{
+    fn into_into_dart(self) -> crate::api::converter::ConvertError {
+        self
+    }
+}
 // Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for crate::api::converter::ConvertParameters {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
@@ -263,6 +302,25 @@ impl SseEncode for bool {
     }
 }
 
+impl SseEncode for crate::api::converter::ConvertError {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::converter::ConvertError::IoError => 0,
+                crate::api::converter::ConvertError::ImageError => 1,
+                crate::api::converter::ConvertError::EncoderError => 2,
+                crate::api::converter::ConvertError::WebPConfigError => 3,
+                crate::api::converter::ConvertError::WebPEncodingError => 4,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
 impl SseEncode for crate::api::converter::ConvertParameters {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -277,6 +335,13 @@ impl SseEncode for f32 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         serializer.cursor.write_f32::<NativeEndian>(self).unwrap();
+    }
+}
+
+impl SseEncode for i32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
     }
 }
 
@@ -307,13 +372,6 @@ impl SseEncode for u8 {
 impl SseEncode for () {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {}
-}
-
-impl SseEncode for i32 {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
-    }
 }
 
 #[cfg(not(target_family = "wasm"))]

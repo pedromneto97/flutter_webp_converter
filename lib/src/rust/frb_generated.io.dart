@@ -21,31 +21,37 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   });
 
   @protected
-  String dco_decode_String(raw);
+  String dco_decode_String(dynamic raw);
 
   @protected
-  bool dco_decode_bool(raw);
+  bool dco_decode_bool(dynamic raw);
 
   @protected
-  ConvertParameters dco_decode_box_autoadd_convert_parameters(raw);
+  ConvertParameters dco_decode_box_autoadd_convert_parameters(dynamic raw);
 
   @protected
-  ConvertParameters dco_decode_convert_parameters(raw);
+  ConvertError dco_decode_convert_error(dynamic raw);
 
   @protected
-  double dco_decode_f_32(raw);
+  ConvertParameters dco_decode_convert_parameters(dynamic raw);
 
   @protected
-  int dco_decode_i_8(raw);
+  double dco_decode_f_32(dynamic raw);
 
   @protected
-  Uint8List dco_decode_list_prim_u_8_strict(raw);
+  int dco_decode_i_32(dynamic raw);
 
   @protected
-  int dco_decode_u_8(raw);
+  int dco_decode_i_8(dynamic raw);
 
   @protected
-  void dco_decode_unit(raw);
+  Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
+
+  @protected
+  int dco_decode_u_8(dynamic raw);
+
+  @protected
+  void dco_decode_unit(dynamic raw);
 
   @protected
   String sse_decode_String(SseDeserializer deserializer);
@@ -55,14 +61,19 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   ConvertParameters sse_decode_box_autoadd_convert_parameters(
-    SseDeserializer deserializer,
-  );
+      SseDeserializer deserializer);
+
+  @protected
+  ConvertError sse_decode_convert_error(SseDeserializer deserializer);
 
   @protected
   ConvertParameters sse_decode_convert_parameters(SseDeserializer deserializer);
 
   @protected
   double sse_decode_f_32(SseDeserializer deserializer);
+
+  @protected
+  int sse_decode_i_32(SseDeserializer deserializer);
 
   @protected
   int sse_decode_i_8(SseDeserializer deserializer);
@@ -77,9 +88,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_decode_unit(SseDeserializer deserializer);
 
   @protected
-  int sse_decode_i_32(SseDeserializer deserializer);
-
-  @protected
   void sse_encode_String(String self, SseSerializer serializer);
 
   @protected
@@ -87,48 +95,46 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_box_autoadd_convert_parameters(
-    ConvertParameters self,
-    SseSerializer serializer,
-  );
+      ConvertParameters self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_convert_error(ConvertError self, SseSerializer serializer);
 
   @protected
   void sse_encode_convert_parameters(
-    ConvertParameters self,
-    SseSerializer serializer,
-  );
+      ConvertParameters self, SseSerializer serializer);
 
   @protected
   void sse_encode_f_32(double self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_i_32(int self, SseSerializer serializer);
 
   @protected
   void sse_encode_i_8(int self, SseSerializer serializer);
 
   @protected
   void sse_encode_list_prim_u_8_strict(
-    Uint8List self,
-    SseSerializer serializer,
-  );
+      Uint8List self, SseSerializer serializer);
 
   @protected
   void sse_encode_u_8(int self, SseSerializer serializer);
 
   @protected
   void sse_encode_unit(void self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_i_32(int self, SseSerializer serializer);
 }
 
 // Section: wire_class
 
 class RustLibWire implements BaseWire {
-  /// The symbols are looked up in [dynamicLibrary].
-  RustLibWire(ffi.DynamicLibrary dynamicLibrary)
-      : _lookup = dynamicLibrary.lookup;
   factory RustLibWire.fromExternalLibrary(ExternalLibrary lib) =>
       RustLibWire(lib.ffiDynamicLibrary);
 
   /// Holds the symbol lookup function.
   final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
       _lookup;
+
+  /// The symbols are looked up in [dynamicLibrary].
+  RustLibWire(ffi.DynamicLibrary dynamicLibrary)
+      : _lookup = dynamicLibrary.lookup;
 }
