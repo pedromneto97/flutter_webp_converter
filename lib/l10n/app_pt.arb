@@ -98,5 +98,9 @@
   "outputFolder": "Diretório de saída",
   "@outputFolder": {
     "description": "Label for the output folder"
+  },
+  "about": "Sobre",
+  "@about": {
+    "description": "Button to show the about dialog"
   }
 }

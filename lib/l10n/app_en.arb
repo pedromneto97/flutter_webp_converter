@@ -20,5 +20,6 @@
   "losslessDescription": "Lossless compression method. Results in larger file size but preserves the quality of the original image.",
   "multiThreading": "Multi-Threading",
   "multiThreadingDescription": "Enable using multiple CPU cores to speed up conversion.",
-  "outputFolder": "Output Folder"
+  "outputFolder": "Output Folder",
+  "about": "About"
 }

@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'domain/domain.dart';
 import 'presentation/home/cubit/convert_file/convert_file_cubit.dart';
+import 'presentation/home/cubit/file_selector_cubit/file_selector_cubit.dart';
 import 'presentation/home/cubit/parameter_cubit/parameter_cubit.dart';
 import 'rust/frb_generated.dart';
 
@@ -41,6 +42,7 @@ Future<void> _setupCubit() async {
         Parameters(outputFolder: outputFolder.path),
       ),
     )
+    ..registerLazySingleton(FileSelectorCubit.new)
     ..registerFactoryParam<ConvertFileCubit, File, void>(
       (file, _) => ConvertFileCubit(
         useCase: GetIt.I.get(),
