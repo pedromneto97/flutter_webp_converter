@@ -11,3 +11,8 @@ flutter_rust_bridge = "=2.7.0"
 image = "0.25.5"
 uuid = { version = "1.11.0", features = ["v4", "fast-rng"] }
 webp = "0.3.0"
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+panic = "abort"
