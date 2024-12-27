@@ -28,15 +28,17 @@ class SelectedImages extends StatelessWidget {
           child: Container(
             height: size + 16.0,
             margin: const EdgeInsets.only(bottom: 16.0),
-            child: BlocSelector<FileSelectorCubit, FileSelectorState, List<File>>(
-              selector: (state) => state is FileSelectorSelected ? state.selectedFiles : const [],
+            child:
+                BlocSelector<FileSelectorCubit, FileSelectorState, List<File>>(
+              selector: (state) => state is FileSelectorSelected
+                  ? state.selectedFiles
+                  : const [],
               builder: (context, state) => ListView.separated(
                 controller: scroll,
                 scrollDirection: Axis.horizontal,
                 itemCount: state.length + 1,
-                clipBehavior: Clip.hardEdge,
                 primary: false,
-                separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 16),
+                separatorBuilder: (context, index) => const SizedBox(width: 16),
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   if (index == 0) {
@@ -44,7 +46,8 @@ class SelectedImages extends StatelessWidget {
                       key: const Key('add_image'),
                       borderRadius: cardRadius,
                       onTap: () => WidgetsBinding.instance.addPostFrameCallback(
-                        (_) => BlocProvider.of<FileSelectorCubit>(context).pickFile(),
+                        (_) => BlocProvider.of<FileSelectorCubit>(context)
+                            .pickFile(),
                       ),
                       child: const Icon(
                         Icons.add_photo_alternate_rounded,
@@ -58,7 +61,8 @@ class SelectedImages extends StatelessWidget {
                   return ImageFile(
                     key: ValueKey(file.path),
                     file: file,
-                    onPressRemove: BlocProvider.of<FileSelectorCubit>(context).removeFile,
+                    onPressRemove:
+                        BlocProvider.of<FileSelectorCubit>(context).removeFile,
                   );
                 },
               ),

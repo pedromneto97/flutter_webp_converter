@@ -4,11 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../domain/domain.dart';
 
 class ParameterCubit extends Cubit<Parameters> {
-  ParameterCubit(super.parameters);
+  ParameterCubit(super.initialState);
 
-  void changeMultiThreading(bool isMultiThreading) => emit(state.copyWith(multiThreading: isMultiThreading));
+  void changeMultiThreading({
+    required bool isMultiThreading,
+  }) =>
+      emit(state.copyWith(multiThreading: isMultiThreading));
 
-  void changeLossless(bool lossless) => emit(state.copyWith(lossless: lossless));
+  void changeLossless({required bool lossless}) =>
+      emit(state.copyWith(lossless: lossless));
 
   void changeCompression(int compressionMethod) => emit(
         state.copyWith(compressionMethod: compressionMethod),

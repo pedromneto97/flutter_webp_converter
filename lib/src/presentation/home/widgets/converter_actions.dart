@@ -16,26 +16,26 @@ class ConverterActions extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        BlocSelector<FileSelectorCubit, FileSelectorState, List<File>>(
-          selector: (state) => state is FileSelectorSelected ? state.selectedFiles : const [],
-          builder: (context, state) => ElevatedButton(
-            onPressed: () => BlocProvider.of<FileConvertCubit>(context).convertFiles(
-              state,
-              BlocProvider.of<ParameterCubit>(context).state,
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          BlocSelector<FileSelectorCubit, FileSelectorState, List<File>>(
+            selector: (state) =>
+                state is FileSelectorSelected ? state.selectedFiles : const [],
+            builder: (context, state) => ElevatedButton(
+              onPressed: () =>
+                  BlocProvider.of<FileConvertCubit>(context).convertFiles(
+                state,
+                BlocProvider.of<ParameterCubit>(context).state,
+              ),
+              child: const Text('Convert'),
             ),
-            child: const Text('Convert'),
           ),
-        ),
-        const SizedBox(height: 16.0),
-        OutlinedButton(
-          onPressed: () => clear(context),
-          child: const Text('Clear file'),
-        ),
-      ],
-    );
-  }
+          const SizedBox(height: 16.0),
+          OutlinedButton(
+            onPressed: () => clear(context),
+            child: const Text('Clear file'),
+          ),
+        ],
+      );
 }

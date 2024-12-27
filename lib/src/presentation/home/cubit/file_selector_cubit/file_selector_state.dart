@@ -12,11 +12,11 @@ class FileSelectorInitial extends FileSelectorState {
 }
 
 class FileSelectorSelected extends FileSelectorState {
-  final List<File> selectedFiles;
-
   const FileSelectorSelected({
     required this.selectedFiles,
   });
+
+  final List<File> selectedFiles;
 
   @override
   List<Object> get props => [selectedFiles];

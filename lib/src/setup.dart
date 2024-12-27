@@ -23,7 +23,7 @@ Future<Directory> _setupDirectory() async {
   final documentsPath = await getApplicationDocumentsDirectory();
   final directory =
       Directory('${documentsPath.path}${Platform.pathSeparator}webp_converter');
-  if (!await directory.exists()) {
+  if (!directory.existsSync()) {
     await directory.create();
   }
 

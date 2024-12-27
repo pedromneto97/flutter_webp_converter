@@ -25,7 +25,7 @@ class FileSelectorCubit extends Cubit<FileSelectorState> {
         if (currentState is FileSelectorSelected) ...currentState.selectedFiles,
       ];
 
-      for (int i = 0; i < paths.length; i++) {
+      for (var i = 0; i < paths.length; i++) {
         final file = File(paths[i]!);
 
         if (!currentSelectedFiles.contains(file)) {
@@ -43,8 +43,7 @@ class FileSelectorCubit extends Cubit<FileSelectorState> {
   void removeFile(File file) {
     final currentState = state;
     if (currentState is FileSelectorSelected) {
-      final files = [...currentState.selectedFiles];
-      files.remove(file);
+      final files = [...currentState.selectedFiles]..remove(file);
       emit(
         FileSelectorSelected(selectedFiles: files),
       );

@@ -1,18 +1,19 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'file_size_display.dart';
 
 class ImageFile extends StatelessWidget {
-  final File file;
-  final void Function(File file)? onPressRemove;
-
   const ImageFile({
-    super.key,
     required this.file,
+    super.key,
     this.onPressRemove,
   });
+
+  final File file;
+  final void Function(File file)? onPressRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class ImageFile extends StatelessWidget {
 
     Widget widget = Material(
       clipBehavior: Clip.antiAlias,
-      color: colorScheme.onBackground,
+      color: colorScheme.onSurface,
       borderRadius: const BorderRadius.all(Radius.circular(8)),
       child: Stack(
         children: [
@@ -60,5 +61,18 @@ class ImageFile extends StatelessWidget {
     }
 
     return widget;
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty<File>('file', file))
+      ..add(
+        ObjectFlagProperty<void Function(File file)?>.has(
+          'onPressRemove',
+          onPressRemove,
+        ),
+      );
   }
 }

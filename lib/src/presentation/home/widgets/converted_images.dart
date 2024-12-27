@@ -9,13 +9,13 @@ import '../cubit/parameter_cubit/parameter_cubit.dart';
 class ConvertedImages extends StatelessWidget {
   const ConvertedImages({super.key});
 
-  void openFolder(BuildContext context) async {
+  Future<void> openFolder(BuildContext context) async {
     final uri = Uri.directory(
       BlocProvider.of<ParameterCubit>(context).state.outputFolder,
     );
     final canLaunch = await canLaunchUrl(uri);
     if (canLaunch) {
-      launchUrl(uri);
+      await launchUrl(uri);
     }
   }
 
@@ -54,9 +54,9 @@ class ConvertedImages extends StatelessWidget {
                   controller: scroll,
                   scrollDirection: Axis.horizontal,
                   itemCount: state.convertedFiles.length,
-                  clipBehavior: Clip.hardEdge,
                   primary: false,
-                  separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 16),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 16),
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     final file = state.convertedFiles[index];

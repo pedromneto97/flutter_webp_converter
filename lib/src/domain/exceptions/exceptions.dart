@@ -5,9 +5,9 @@ abstract class BaseException implements Exception {
 }
 
 abstract class ConversionException extends BaseException {
-  final File file;
-
   const ConversionException(this.file);
+
+  final File file;
 }
 
 class FailedToConvertFile extends ConversionException {

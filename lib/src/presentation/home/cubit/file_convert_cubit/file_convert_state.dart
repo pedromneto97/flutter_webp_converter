@@ -17,13 +17,13 @@ class FileConvertLoading extends FileConvertState {
 }
 
 class FileConvertSuccess extends FileConvertState {
-  final List<File> convertedFiles;
-  final List<ConversionException> failedFiles;
-
   const FileConvertSuccess({
     required this.convertedFiles,
     this.failedFiles = const [],
   });
+
+  final List<File> convertedFiles;
+  final List<ConversionException> failedFiles;
 
   @override
   List<Object> get props => [
@@ -33,11 +33,11 @@ class FileConvertSuccess extends FileConvertState {
 }
 
 class FileConvertFailure extends FileConvertState {
-  final Exception? exception;
-
   const FileConvertFailure({
     this.exception,
   });
+
+  final Exception? exception;
 
   @override
   List<Object?> get props => [

@@ -18,4 +18,5 @@ extension ConvertByteToReadableFormat on int {
   }
 }
 
-String _formatSize(int size, int divider, String unit) => '${(size / divider).toStringAsFixed(2)} $unit';
+String _formatSize(int size, int divider, String unit) =>
+    '${(size / divider).toStringAsFixed(2)} $unit';

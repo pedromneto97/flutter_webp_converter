@@ -13,9 +13,9 @@ part 'file_convert_state.dart';
 
 @injectable
 class FileConvertCubit extends Cubit<FileConvertState> {
-  final ConvertFileUseCase _useCase;
-
   FileConvertCubit(this._useCase) : super(const FileConvertInitial());
+
+  final ConvertFileUseCase _useCase;
 
   Future<void> convertFiles(List<File> files, Parameters parameters) async {
     try {
@@ -25,15 +25,15 @@ class FileConvertCubit extends Cubit<FileConvertState> {
       final convertedFiles = <File>[];
       final failedFiles = <ConversionException>[];
 
-      for (int index = 0; index < files.length; index++) {
+      for (var index = 0; index < files.length; index++) {
         futures.add(
           _useCase
               .call(files[index], parameters)
               .then(
-                (value) => convertedFiles.add(value),
+                convertedFiles.add,
               )
               .catchError(
-                (exception) => failedFiles.add(exception),
+                failedFiles.add,
                 test: (exception) => exception is ConversionException,
               ),
         );

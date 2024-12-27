@@ -7,24 +7,27 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 import '../frb_generated.dart';
 
-Future<String> convertImage(
-        {required String imagePath,
-        required ConvertParameters convertParameters}) =>
+Future<String> convertImage({
+  required String imagePath,
+  required ConvertParameters convertParameters,
+}) =>
     RustLib.instance.api.crateApiConverterConvertImage(
-        imagePath: imagePath, convertParameters: convertParameters);
+      imagePath: imagePath,
+      convertParameters: convertParameters,
+    );
 
 class ConvertParameters {
-  final double quality;
-  final String outputDirectory;
-  final bool lossless;
-  final int method;
-
   const ConvertParameters({
     required this.quality,
     required this.outputDirectory,
     required this.lossless,
     required this.method,
   });
+
+  final double quality;
+  final String outputDirectory;
+  final bool lossless;
+  final int method;
 
   @override
   int get hashCode =>

@@ -14,8 +14,12 @@ import 'widgets/selected_images.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  bool listenFileConvertWhen(FileConvertState previous, FileConvertState current) =>
-      (current is FileConvertSuccess && current.failedFiles.isNotEmpty) || current is FileConvertFailure;
+  bool listenFileConvertWhen(
+    FileConvertState previous,
+    FileConvertState current,
+  ) =>
+      (current is FileConvertSuccess && current.failedFiles.isNotEmpty) ||
+      current is FileConvertFailure;
 
   void onFileConvertFailure(BuildContext context, FileConvertFailure state) {
     final theme = Theme.of(context);
@@ -26,7 +30,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: colorScheme.error,
         content: Text(
           'You don\'t have the webp converter, please install it and try again',
-          style: theme.textTheme.subtitle2!.copyWith(
+          style: theme.textTheme.titleSmall!.copyWith(
             color: colorScheme.onError,
           ),
         ),
@@ -36,11 +40,12 @@ class HomePage extends StatelessWidget {
 
   void onFileConvertSuccess(BuildContext context, FileConvertSuccess state) {
     final errorMessages = <String>[];
-    for (int index = 0; index < state.failedFiles.length; index++) {
+    for (var index = 0; index < state.failedFiles.length; index++) {
       final failedFile = state.failedFiles[index];
 
       if (failedFile is FileNotFound) {
-        errorMessages.add('- File not found, file path: ${failedFile.file.path}');
+        errorMessages
+            .add('- File not found, file path: ${failedFile.file.path}');
       } else if (failedFile is FailedToConvertFile) {
         errorMessages.add(
           '- Failed to convert file, check if output folder exists and image format is supported: ${failedFile.file.path}',
@@ -55,7 +60,7 @@ class HomePage extends StatelessWidget {
       SnackBar(
         content: Text(
           'Failed to convert some images:\n${errorMessages.join('\n')}',
-          style: theme.textTheme.subtitle2!.copyWith(
+          style: theme.textTheme.titleSmall!.copyWith(
             color: colorScheme.onError,
           ),
         ),
@@ -100,7 +105,8 @@ class HomePage extends StatelessWidget {
         body: MultiBlocListener(
           listeners: [
             BlocListener<FileSelectorCubit, FileSelectorState>(
-              listener: (context, state) => BlocProvider.of<FileConvertCubit>(context).clear(),
+              listener: (context, state) =>
+                  BlocProvider.of<FileConvertCubit>(context).clear(),
             ),
             BlocListener<FileConvertCubit, FileConvertState>(
               listenWhen: listenFileConvertWhen,
@@ -108,27 +114,25 @@ class HomePage extends StatelessWidget {
             ),
           ],
           child: LayoutBuilder(
-            builder: (context, constraints) {
-              return SingleChildScrollView(
-                padding: const EdgeInsets.all(contentPadding),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: constraints.maxHeight - (contentPadding * 2),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      SelectedImages(),
-                      SizedBox(height: 16),
-                      ConvertedImages(),
-                      SizedBox(height: 16),
-                      ConverterActions(),
-                    ],
-                  ),
+            builder: (context, constraints) => SingleChildScrollView(
+              padding: const EdgeInsets.all(contentPadding),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight - (contentPadding * 2),
                 ),
-              );
-            },
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SelectedImages(),
+                    SizedBox(height: 16),
+                    ConvertedImages(),
+                    SizedBox(height: 16),
+                    ConverterActions(),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       ),
