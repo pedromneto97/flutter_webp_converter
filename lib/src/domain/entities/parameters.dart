@@ -4,7 +4,7 @@ class Parameters {
     this.multiThreading = true,
     this.lossless = false,
     this.compressionMethod = 6,
-    this.quality = 75,
+    this.quality = 100,
   })  : assert(
           compressionMethod >= 1 && compressionMethod <= 6,
           'Compression method must be between 1 and 6',
@@ -17,14 +17,14 @@ class Parameters {
   final bool multiThreading;
   final bool lossless;
   final int compressionMethod;
-  final int quality;
+  final double quality;
   final String outputFolder;
 
   Parameters copyWith({
     bool? multiThreading,
     bool? lossless,
     int? compressionMethod,
-    int? quality,
+    double? quality,
     String? outputFolder,
   }) =>
       Parameters(

@@ -17,7 +17,3 @@ class FailedToConvertFile extends ConversionException {
 class FileNotFound extends ConversionException {
   const FileNotFound(super.file);
 }
-
-class ExecutableNotFound extends BaseException {
-  const ExecutableNotFound();
-}

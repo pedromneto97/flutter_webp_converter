@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/conversion.dart';
+import '../core/utils/conversion.dart';
 
 class FileSizeDisplay extends StatelessWidget {
   const FileSizeDisplay({

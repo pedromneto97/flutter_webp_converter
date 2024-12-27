@@ -18,7 +18,7 @@ class ParameterCubit extends Cubit<Parameters> {
         state.copyWith(compressionMethod: compressionMethod),
       );
 
-  void changeQuality(int quality) => emit(state.copyWith(quality: quality));
+  void changeQuality(double quality) => emit(state.copyWith(quality: quality));
 
   Future<void> changeOutputDirectory() async {
     final result = await FilePicker.platform.getDirectoryPath(
