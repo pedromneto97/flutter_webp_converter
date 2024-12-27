@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 
 import '../../../../core/event_bus/base_event.dart';
 import '../../../../core/event_bus/event_bus.dart';
@@ -12,12 +11,11 @@ import '../parameter_cubit/parameter_cubit.dart';
 
 part 'convert_file_state.dart';
 
-@injectable
 class ConvertFileCubit extends Cubit<ConvertFileState> {
   ConvertFileCubit({
     required ConvertFileUseCase useCase,
     required ParameterCubit parameterCubit,
-    @factoryParam required File file,
+    required File file,
   })  : _useCase = useCase,
         _parameterCubit = parameterCubit,
         _file = file,

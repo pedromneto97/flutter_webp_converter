@@ -1,11 +1,8 @@
 import 'dart:io';
 
-import 'package:injectable/injectable.dart';
-
 import '../../rust/api/converter.dart';
 import '../entities/entities.dart';
 
-@LazySingleton()
 class ConvertFileUseCase {
   const ConvertFileUseCase();
 

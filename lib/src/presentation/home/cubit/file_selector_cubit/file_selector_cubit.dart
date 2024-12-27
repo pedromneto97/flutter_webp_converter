@@ -3,11 +3,9 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 
 part 'file_selector_state.dart';
 
-@injectable
 class FileSelectorCubit extends Cubit<FileSelectorState> {
   FileSelectorCubit() : super(const FileSelectorInitial());
 

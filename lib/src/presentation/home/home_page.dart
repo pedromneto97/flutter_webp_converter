@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../core/utils/localizations.dart';
 import 'cubit/file_selector_cubit/file_selector_cubit.dart';
 import 'cubit/parameter_cubit/parameter_cubit.dart';
 import 'widgets/converter_actions.dart';
@@ -16,8 +15,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const contentPadding = 16.0;
-
-    final strings = context.strings;
 
     return MultiBlocProvider(
       providers: [
