@@ -1,0 +1,4 @@
+﻿cargo:
+  release:
+    extra_flags:
+      - Ctarget-cpu=native
