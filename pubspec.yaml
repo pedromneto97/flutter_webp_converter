@@ -7,6 +7,9 @@ version: 1.0.0+1
 environment:
   sdk: ^3.6.0
 
+dependency_overrides:
+  get_it: ^8.0.3
+
 dependencies:
   equatable: ^2.0.7
   file_picker: ^8.1.7
@@ -30,7 +33,19 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
+  msix: ^3.16.8
 
 flutter:
   uses-material-design: true
   generate: true
+
+msix_config:
+  display_name: WebP Converter
+  publisher_display_name: Lospi Dev
+  identity_name: dev.lospi.webp-converter
+  publisher: "CN=Lospi Dev, O=Lospi Dev, CN=BR"
+  logo_path: logo.jpg
+  store: false
+  languages: en-US, pt-BR
+  app_installer: #<-- app installer configuration
+    publish_folder_path: .\build\output
