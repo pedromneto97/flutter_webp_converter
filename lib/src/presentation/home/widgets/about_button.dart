@@ -28,7 +28,7 @@ class AboutButton extends StatelessWidget {
 
     return showAboutDialog(
       context: context,
-      applicationLegalese: 'Pedro Mendes Neto © 2025',
+      applicationLegalese: 'Copyright (C) 2024 dev.lospi. All rights reserved.',
       applicationName: 'WebP Converter',
       applicationVersion: packageInfo.version,
       children: [
